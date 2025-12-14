@@ -1,0 +1,32 @@
+{
+  "name": "tutor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.556.0",
+    "moment-timezone": "^0.6.0",
+    "motion": "^12.23.25",
+    "next": "16.0.8",
+    "react": "19.2.1",
+    "react-datepicker": "^9.0.0",
+    "react-dom": "19.2.1",
+    "react-intersection-observer": "^10.0.0",
+    "react-select": "^5.10.2",
+    "react-toastify": "^11.0.5",
+    "react-top-loading-bar": "^3.0.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.8",
+    "tailwindcss": "^4"
+  }
+}
