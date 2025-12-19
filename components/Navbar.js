@@ -54,7 +54,7 @@ const Navbar = () => {
     
     { label: 'Our Tutors', icon: Users, href: '/tutors', color: 'from-emerald-500 to-teal-500' },
     { label: 'About Us', icon: Info, href: '/about', color: 'from-orange-500 to-red-500' },
-    { label: 'Privacy Policy', icon: Shield, href: '#privacy', color: 'from-indigo-500 to-purple-500' },
+    { label: 'Privacy Policy', icon: Shield, href: '/policy', color: 'from-indigo-500 to-purple-500' },
     { label: 'Contact Us', icon: Mail, href: '#contact', color: 'from-rose-500 to-pink-600' },
   ];
 
