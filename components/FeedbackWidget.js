@@ -37,36 +37,37 @@ export default function CounselingForm() {
     reset,
   } = useForm();
 
-  // Watch values for floating label effect
+  // Watch values for floating labels
   const watchedPhone = watch('phone');
-  const watchedCity = watch('city');
+  const watchedEmail = watch('email');
   const watchedCountry = watch('country');
+  const watchedCity = watch('city');
   const watchedTime = watch('time');
+  const watchedDescription = watch('description');
 
   const onSubmit = async (data) => {
-    if (isSubmitting) return; // Prevent double submission
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
 
     try {
-      console.log(data)
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbyzROxxNmsczMdv6ZQR4FBABLw_YcvVjLYS-0t3GyAD1lIC9FaUkmSGp-BNFNIRgcMm/exec',
+      console.log('Submitting data:', data);
+
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbxmehTh1Og4H4vdp8GjyyST32M48h3tZhfwKVq2fT9tAs6Hjz30B-mTcYKh9SDpI89M/exec',
         {
           method: 'POST',
           body: new URLSearchParams(data),
-          
         }
       );
 
-      // Since no-cors, we can't read response, but assume success if no error
       toast.success('We will contact you on WhatsApp soon! 💬', {
         position: 'bottom-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         theme: 'colored',
-        style: { background: '#065f46', color: 'white' },
+        style: { background: '#1d4ed8', color: 'white' },
       });
 
       reset();
@@ -83,11 +84,11 @@ export default function CounselingForm() {
 
   const handleFormSubmit = () => {
     const data = getValues();
-    const requiredFields = ['phone', 'country', 'city', 'time'];
+    const requiredFields = ['phone', 'email', 'country', 'city', 'time'];
     const missing = requiredFields.filter((field) => !data[field]);
 
     if (missing.length > 0) {
-      toast.error('Please fill in all fields!', { theme: 'colored' });
+      toast.error('Please fill in all required fields!', { theme: 'colored' });
       return;
     }
     onSubmit(data);
@@ -98,7 +99,7 @@ export default function CounselingForm() {
       {/* Floating WhatsApp Button */}
       <motion.button
         onClick={() => setOpen(true)}
-        className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50 group overflow-hidden"
+        className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-2xl flex items-center justify-center text-white z-50 group overflow-hidden"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.8, type: 'spring', stiffness: 200 }}
@@ -120,33 +121,25 @@ export default function CounselingForm() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
           >
             <motion.div
-              className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-50 shadow-2xl border border-teal-200/50"
-              initial={{ scale: 0.8, y: 60, opacity: 0 }}
+              className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden"
+              initial={{ scale: 0.9, y: 50, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.8, y: 60, opacity: 0 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 200 }}
+              exit={{ scale: 0.9, y: 50, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-teal-200/10 to-transparent pointer-events-none" />
-
-              <div className="relative p-8 pt-10">
-                <motion.h2
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-3xl font-bold text-center bg-gradient-to-r from-[#1D3E89] to-teal-700 bg-clip-text text-transparent"
-                >
+              <div className="p-8 pt-10">
+                <h2 className="text-3xl font-bold text-center text-gray-800">
                   Get Free Counseling
-                </motion.h2>
-                <p className="text-center text-teal-700 mt-2">We will reach you on WhatsApp</p>
+                </h2>
+                <p className="text-center text-gray-600 mt-2">We will reach you on WhatsApp</p>
 
                 <form className="space-y-6 mt-8">
                   {/* Phone */}
@@ -155,40 +148,50 @@ export default function CounselingForm() {
                       type="tel"
                       {...register('phone', {
                         required: 'Phone number is required',
-                        pattern: { value: /^[0-9]{10,15}$/, message: 'Invalid phone number' },
+                        pattern: { value: /^[0-9+\-\s()]{10,20}$/, message: 'Invalid phone number' },
                       })}
-                      className="peer w-full px-5 py-4 rounded-2xl bg-white/70 backdrop-blur border border-teal-300/50 outline-none transition-all focus:border-teal-500 focus:ring-4 focus:ring-teal-300/30"
+                      className="peer w-full px-5 py-4 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
                       placeholder=" "
                     />
-                    <label className="absolute left-5 top-4 text-teal-600 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:bg-gradient-to-r peer-focus:from-cyan-50 peer-focus:via-teal-50 peer-focus:to-emerald-50 peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-gradient-to-r peer-valid:from-cyan-50 peer-valid:via-teal-50 peer-valid:to-emerald-50 peer-valid:px-2">
+                    <label className="absolute left-5 top-4 text-gray-500 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:text-blue-600 peer-focus:bg-white peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-white peer-valid:px-2">
                       Phone Number (with country code)
                     </label>
                     {errors.phone && <span className="text-red-500 text-xs mt-1 block">{errors.phone.message}</span>}
                   </div>
 
+                  {/* Email */}
+                  <div className="relative">
+                    <input
+                      type="email"
+                      {...register('email', {
+                        required: 'Email is required',
+                        pattern: { value: /^\S+@\S+$/i, message: 'Invalid email address' },
+                      })}
+                      className="peer w-full px-5 py-4 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
+                      placeholder=" "
+                    />
+                    <label className="absolute left-5 top-4 text-gray-500 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:text-blue-600 peer-focus:bg-white peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-white peer-valid:px-2">
+                      Email Address
+                    </label>
+                    {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email.message}</span>}
+                  </div>
+
                   {/* Country */}
                   <div>
                     <ReactSelect
-                      options={countries} 
+                      options={countries}
                       onChange={(opt) => setValue('country', opt?.value || '', { shouldValidate: true })}
                       placeholder="Select your country"
-                      className="react-select-container text-slate-600"
+                      className="react-select-container text-slate-700"
                       classNamePrefix="react-select"
                       styles={{
-                        control: (base) => ({
+                        control: (base, state) => ({
                           ...base,
-                          borderRadius: '1rem',
-                          border: '1px solid rgba(94, 234, 212, 0.5)',
-                          background: 'rgba(255,255,255,0.7)',
-                          backdropFilter: 'blur(8px)',
+                          borderRadius: '12px',
+                          borderColor: state.isFocused ? '#3b82f6' : '#d1d5db',
+                          boxShadow: state.isFocused ? '0 0 0 4px rgba(59, 130, 246, 0.1)' : 'none',
                           padding: '8px',
-                          boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
-                        }),
-                        menu: (base) => ({
-                          ...base,
-                          borderRadius: '1rem',
-                          overflow: 'hidden',
-                          backdropFilter: 'blur(10px)',
+                          '&:hover': { borderColor: '#3b82f6' },
                         }),
                       }}
                       isSearchable
@@ -200,16 +203,16 @@ export default function CounselingForm() {
                     <input
                       type="text"
                       {...register('city', { required: 'City is required' })}
-                      className="peer w-full px-5 py-4 rounded-2xl bg-white/70 backdrop-blur border border-teal-300/50 outline-none transition-all focus:border-teal-500 focus:ring-4 focus:ring-teal-300/30"
+                      className="peer w-full px-5 py-4 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all"
                       placeholder=" "
                     />
-                    <label className="absolute left-5 top-4 text-teal-600 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:bg-gradient-to-r peer-focus:from-cyan-50 peer-focus:via-teal-50 peer-focus:to-emerald-50 peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-gradient-to-r peer-valid:from-cyan-50 peer-valid:via-teal-50 peer-valid:to-emerald-50 peer-valid:px-2">
+                    <label className="absolute left-5 top-4 text-gray-500 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:text-blue-600 peer-focus:bg-white peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-white peer-valid:px-2">
                       City
                     </label>
                     {errors.city && <span className="text-red-500 text-xs mt-1 block">{errors.city.message}</span>}
                   </div>
 
-                  {/* Time */}
+                  {/* Preferred Time */}
                   <div>
                     <ReactSelect
                       options={timeOptions}
@@ -218,18 +221,30 @@ export default function CounselingForm() {
                       className="react-select-container text-slate-600"
                       classNamePrefix="react-select"
                       styles={{
-                        control: (base) => ({
+                        control: (base, state) => ({
                           ...base,
-                          borderRadius: '1rem',
-                          border: '1px solid rgba(94, 234, 212, 0.5)',
-                          background: 'rgba(255,255,255,0.7)',
-                          backdropFilter: 'blur(8px)',
+                          borderRadius: '12px',
+                          borderColor: state.isFocused ? '#3b82f6' : '#d1d5db',
+                          boxShadow: state.isFocused ? '0 0 0 4px rgba(59, 130, 246, 0.1)' : 'none',
                           padding: '8px',
-                          boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+                          '&:hover': { borderColor: '#3b82f6' },
                         }),
                       }}
                       isSearchable={false}
                     />
+                  </div>
+
+                  {/* Description (Auto-expanding Textarea) */}
+                  <div className="relative">
+                    <textarea
+                      {...register('description')}
+                      rows="3"
+                      className="text-gray-800 peer w-full px-5 py-4 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 outline-none transition-all resize-none"
+                      placeholder=" "
+                    />
+                    <label className="absolute left-5 top-4 pointer-events-none transition-all duration-300 peer-focus:-top-3 peer-focus:left-4 peer-focus:text-xs peer-focus:text-blue-600 peer-focus:bg-white peer-focus:px-2 peer-valid:-top-3 peer-valid:left-4 peer-valid:text-xs peer-valid:bg-white peer-valid:px-2 text-slate-700">
+                      Description (Optional)
+                    </label>
                   </div>
 
                   {/* Submit Button */}
@@ -237,34 +252,31 @@ export default function CounselingForm() {
                     type="button"
                     disabled={isSubmitting}
                     onClick={handleFormSubmit}
-                    className="relative w-full py-5 mt-8 bg-gradient-to-r from-[#1D3E89] via-teal-600 to-emerald-600 text-white font-bold text-lg rounded-2xl shadow-xl overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="w-full py-5 mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-3">
-                      {isSubmitting ? (
-                        <>
-                          <motion.div
-                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                          />
-                          Submitting...
-                        </>
-                      ) : (
-                        'Submit Request'
-                      )}
-                    </span>
-                    <div className="absolute inset-0 bg-white/20 scale-x-0 origin-left transition-transform duration-700 hover:scale-x-100" />
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-3">
+                        <motion.div
+                          className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        />
+                        Submitting...
+                      </span>
+                    ) : (
+                      'Submit Request'
+                    )}
                   </motion.button>
                 </form>
 
                 {/* Close Button */}
                 <motion.button
                   onClick={() => setOpen(false)}
-                  className="absolute top-6 right-6 text-teal-800 hover:text-teal-900 text-3xl"
-                  whileHover={{ scale: 1.3, rotate: 90 }}
-                  whileTap={{ scale: 0.8 }}
+                  className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 text-3xl"
+                  whileHover={{ scale: 1.2, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   ✕
                 </motion.button>

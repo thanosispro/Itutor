@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import FeedbackWidget from "@/components/FeedbackWidget";
 import { ToastContainer } from "react-toastify";
 import LoadingBar from "react-top-loading-bar";
+import Footer from "@/components/Footer";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -58,6 +59,7 @@ export default function App({ Component, pageProps }) {
           {page}
         </div>
       ))}
+      <Footer />
     </>
   );
 }
