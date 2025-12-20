@@ -1,6 +1,7 @@
 'use client';
 
 import FeedbackWidget from '@/components/FeedbackWidget';
+import SubjectCarousel from '@/components/mainPageSection/subject';
 import { Section1 } from '@/components/Section1';
 import { Section3 } from '@/components/Section3';
 import ColorTransitionOverlay from '@/components/Transition';
@@ -71,6 +72,7 @@ export default function Home() {
         className="w-full pt-16 sm:pt-20 md:pt-24"
       >
         <Section1 />
+        <SubjectCarousel />
         <Section3 />
         
         {/* Add more sections here */}

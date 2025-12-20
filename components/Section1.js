@@ -85,7 +85,7 @@ export function Section1() {
           
           {/* TEXT SIDE */}
           <motion.div className="space-y-6 sm:space-y-8">
-            <motion.h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-950 leading-tight" variants={fadeUp}>
+            <motion.h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-blue-950 leading-tight" variants={fadeUp}>
               Qualified educators and tutors for your child for nearly any subject
             </motion.h1>
 
