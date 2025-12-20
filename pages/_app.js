@@ -7,7 +7,7 @@ import FeedbackWidget from "@/components/FeedbackWidget";
 import { ToastContainer } from "react-toastify";
 import LoadingBar from "react-top-loading-bar";
 import Footer from "@/components/Footer";
-
+import Head from "next/head";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const [pages, setPages] = useState({});
@@ -41,6 +41,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <title>Innovative Learn</title>
+      </Head>
       <Navbar />
       <FeedbackWidget />
       <ToastContainer />
