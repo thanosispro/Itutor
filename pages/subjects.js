@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Search, ChevronDown, X, Check, BookOpen } from 'lucide-react';
-import FindTutorModal from '@/components/FormModal';
+import FindTutorModal from '@/components/formModals/FormModal';
 
 const subjectsData = [
   { name: 'Science', img: '/subjects/science.webp' },
@@ -70,7 +70,7 @@ export default function SubjectsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-teal-50 pt-32 px-6 md:px-12">
+    <div className="min-h-screen bg-gradient-to-br pb-10 from-indigo-50 via-white to-teal-50 pt-32 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl md:text-6xl font-extrabold text-center text-indigo-950 mb-4">
           Explore Subjects

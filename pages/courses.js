@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Search, ChevronDown, X, Check, Code2, BookOpen } from 'lucide-react';
-import FindTutorModal from '@/components/FormModal';
-
+import FindTutorModal from '@/components/formModals/FormModal';
+import InstituteModal from '@/components/formModals/instituteModal'; // New Modal for Personal or Institute Selection
+import CourseBookingChoiceModal from '@/components/formModals/choiceModal';
 const coursesData = [
   { name: 'Machine Learning', img: '/courses/machine-learning.webp' },
   { name: 'Web Development', img: '/courses/web-development.webp' },
@@ -19,7 +20,9 @@ function shuffleArray(array) {
 export default function CoursesPage() {
   const [search, setSearch] = useState('');
   const [courses, setCourses] = useState(coursesData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Personal Registration Modal state
+  const [isInstituteModalOpen, setIsInstituteModalOpen] = useState(false); // Institute Registration Modal state
+  const [isChoiceModalOpen, setIsChoiceModalOpen] = useState(false); // Modal for selecting Personal or Institute
   const [timezone, setTimezone] = useState('');
   const [availability, setAvailability] = useState('');
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -28,15 +31,25 @@ export default function CoursesPage() {
     setCourses(shuffleArray(coursesData));
   }, []);
 
-  const handleBookClass = (course) => {
-    setIsModalOpen(true);
+  const handleBookClass = () => {
+    setIsChoiceModalOpen(true); // Show the modal to choose Personal or Institute
   };
 
   const filteredCourses = courses.filter((course) =>
     course.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Reusable Dropdown Component (slightly refined)
+  // Handle the choice selection (Personal or Institute)
+  const handleChoiceSelection = (type) => {
+    setIsChoiceModalOpen(false); // Close the choice modal
+    if (type === 'personal') {
+      setIsModalOpen(true); // Open the personal registration modal
+    } else {
+      setIsInstituteModalOpen(true); // Open the institute registration modal
+    }
+  };
+
+  // Dropdown component
   const Dropdown = ({ label, value, options, onChange, id }) => (
     <div className="relative w-full md:w-64">
       <button
@@ -142,28 +155,6 @@ export default function CoursesPage() {
               ]}
             />
           </div>
-
-          {/* Active Filters Indicator */}
-          {(timezone || availability) && (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {timezone && (
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">
-                  Timezone: {timezone}
-                  <button onClick={() => setTimezone('')} className="ml-2 hover:text-indigo-900">
-                    <X className="w-4 h-4" />
-                  </button>
-                </span>
-              )}
-              {availability && (
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">
-                  Time: {availability}
-                  <button onClick={() => setAvailability('')} className="ml-2 hover:text-purple-900">
-                    <X className="w-4 h-4" />
-                  </button>
-                </span>
-              )}
-            </div>
-          )}
         </div>
 
         {/* Courses Grid */}
@@ -180,7 +171,7 @@ export default function CoursesPage() {
                     <img
                       src={course.img}
                       alt={course.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full sm:h-60 sm:w-96 object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
@@ -196,7 +187,7 @@ export default function CoursesPage() {
                     </h3>
 
                     <button
-                      onClick={() => handleBookClass(course)}
+                      onClick={handleBookClass}
                       className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:from-indigo-700 hover:to-purple-800 transform hover:scale-105 transition-all duration-300"
                     >
                       Enroll Now
@@ -220,11 +211,26 @@ export default function CoursesPage() {
           )}
         </div>
 
-        {/* Modal */}
+        {/* Modals */}
+        {isChoiceModalOpen && (
+          <CourseBookingChoiceModal
+            isOpen={isChoiceModalOpen}
+            onClose={() => setIsChoiceModalOpen(false)}
+            onSelect={handleChoiceSelection}
+          />
+        )}
+
         {isModalOpen && (
           <FindTutorModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
+          />
+        )}
+
+        {isInstituteModalOpen && (
+          <InstituteModal
+            isOpen={isInstituteModalOpen}
+            onClose={() => setIsInstituteModalOpen(false)}
           />
         )}
       </div>
