@@ -75,14 +75,16 @@ const InstituteModal = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 overflow-auto">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl w-full max-h-screen overflow-y-auto">
-        <X onClick={onClose} className="absolute top-4 right-4 text-emerald-400 hover:text-gray-300 text-9xl">
+        
+        <form className='relative' onSubmit={handleSubmit}>
+          <X onClick={onClose} className="absolute top-0 right-0 text-emerald-400 hover:text-gray-300 text-3xl">
           
         </X>
-        <form onSubmit={handleSubmit}>
           <h2 className="text-2xl font-semibold text-blue-600 mb-6">Institute Registration Form</h2>
 
           {/* Institute Information */}
-          <section className="mb-6">
+          <section className="mb-6 relative">
+            
             <h3 className="font-semibold text-gray-800 mb-2">Institute Information</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
@@ -321,7 +323,7 @@ const InstituteModal = ({ isOpen, onClose }) => {
                   onChange={handleChange}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
-                <span>Custom Curriculum Required?</span>
+                <span className='text-slate-700'>Custom Curriculum Required?</span>
               </div>
               <div className="flex items-center">
                 <input
@@ -331,7 +333,7 @@ const InstituteModal = ({ isOpen, onClose }) => {
                   onChange={handleChange}
                   className="form-checkbox h-5 w-5 text-blue-600"
                 />
-                <span>Assessment / Mock Tests Needed?</span>
+                <span className='text-slate-700'>Assessment / Mock Tests Needed?</span>
               </div>
             </div>
           </section>

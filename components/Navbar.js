@@ -89,7 +89,7 @@ const Navbar = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsMenuOpen((p) => !p)}
-            className={`p-3 rounded-xl cursor-pointer hover:text-emerald-600 text-cyan-900 '}`}
+            className={`p-3 rounded-xl cursor-pointer hover:text-emerald-600   text-cyan-900 '}`}
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -109,7 +109,7 @@ const Navbar = () => {
                   <Link href="/subjects">Find Tutors</Link>
                 </button>
 
-                <nav className="space-y-2 pt-4 border-t">
+                <nav className="space-y-2 pt-4">
                   {menuItems.map((item) => (
                     <Link
                       key={item.label}

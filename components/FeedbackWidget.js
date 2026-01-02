@@ -82,11 +82,11 @@ export default function CounselingForm() {
       {/* Modal */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed w-full  bg-black/50 overflow-y-auto backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={() => setOpen(false)}
         >
           <div
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-8"
+            className="relative w-screen max-w-lg max-h-screen overflow-auto  bg-white rounded-3xl shadow-2xl p-8"
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-3xl font-bold text-center text-gray-800">Get Free Counseling</h2>
@@ -217,7 +217,7 @@ export default function CounselingForm() {
             {/* Close Button */}
             <button
               onClick={() => setOpen(false)}
-              className="absolute top-6 right-6 text-gray-500 hover:text-gray-700 text-3xl"
+              className="absolute   top-6 right-6 text-amber-500 hover:text-gray-700 text-3xl"
             >
               ✕
             </button>
