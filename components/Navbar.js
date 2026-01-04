@@ -99,17 +99,17 @@ const Navbar = () => {
             <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-lg border">
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="absolute top-3 right-3 p-2 text-white rounded-full bg-[#1D3E89] hover:bg-[#1D3E89]/90"
+                className="absolute  right-0 p-2 text-white rounded-full bg-[#1D3E89] hover:bg-[#1D3E89]/90"
               >
                 <X size={18} />
               </button>
 
               <div className="py-6 px-6 space-y-3">
-                <button className="lg:hidden w-full py-3 rounded-xl font-semibold text-white bg-[#1D3E89] shadow hover:bg-[#1D3E89]/90">
+                <button className="lg:hidden w-4/5 py-3 rounded-xl font-semibold text-white bg-[#1D3E89] shadow hover:bg-[#1D3E89]/90">
                   <Link href="/subjects">Find Tutors</Link>
                 </button>
 
-                <nav className="space-y-2 pt-4">
+                <nav className="space-y-2 w-4/5 pt-4 border-t-2 border-[#1D3E89]">
                   {menuItems.map((item) => (
                     <Link
                       key={item.label}

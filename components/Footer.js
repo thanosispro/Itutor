@@ -35,7 +35,7 @@ const Footer = () => {
         <div className="text-center md:text-left">
           <h3 className="font-semibold text-lg mb-2 text-indigo-900">Contact Us</h3>
           <p className="flex items-center justify-center md:justify-start gap-2"><Mail className="w-5 h-5 text-indigo-600"/> innovativelearn.uk@gmail.com</p>
-          <p className="flex items-center justify-center md:justify-start gap-2"><Phone className="w-5 h-5 text-indigo-600"/> +977-9803178238</p>
+          <p className="flex items-center justify-center md:justify-start gap-2"><Phone className="w-5 h-5 text-indigo-600"/> +977-9705459146</p>
         </div>
 
         <div className="text-center md:text-left">
