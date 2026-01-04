@@ -6,11 +6,17 @@ import FindTutorModal from '@/components/formModals/FormModal';
 import InstituteModal from '@/components/formModals/instituteModal'; // New Modal for Personal or Institute Selection
 import CourseBookingChoiceModal from '@/components/formModals/choiceModal';
 const coursesData = [
-  { name: 'Machine Learning', img: '/courses/machine-learning.webp' },
-  { name: 'Web Development', img: '/courses/web-development.webp' },
-  { name: 'Game Development', img: '/courses/game-development.webp' },
-  { name: 'Ethical Hacking', img: '/courses/hacking.webp' },
-];
+  { name: "Web Development", img: "/courses/web-development.webp" },
+  { name: "App Development", img: "/courses/app-development.webp" },
+  { name: "Game Development", img: "/courses/game-development.webp" },
+  { name: "Python Programming", img: "/courses/python-programming.webp" },
+  { name: "Data Science", img: "/courses/data-science.webp" },
+  { name: "AI Fundamentals", img: "/courses/ai-fundamentals.webp" },
+  { name: "Cybersecurity", img: "/courses/cyber-security.webp" },
+
+  { name: "Graphic Design", img: "/courses/graphic-design.webp" },
+  { name: "UI/UX Design", img: "/courses/ui-ux-design.webp" },
+  { name: "Video Editing", img: "/courses/video-editing.webp" },]
 
 // Shuffle array for dynamic feel on each visit
 function shuffleArray(array) {

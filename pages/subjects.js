@@ -4,11 +4,18 @@ import { Search, ChevronDown, X, Check, BookOpen } from 'lucide-react';
 import FindTutorModal from '@/components/formModals/FormModal';
 
 const subjectsData = [
-  { name: 'Science', img: '/subjects/science.webp' },
-  { name: 'History', img: '/subjects/history.webp' },
-  { name: 'Math', img: '/subjects/math.webp' },
-  { name: 'Game', img: '/subjects/game.webp' },
+  { name: "Mathematics", img: "/subjects/mathematics.webp" },
+  { name: "Physics", img: "/subjects/physics.webp" },
+  { name: "Computer Science", img: "/subjects/computer-science.webp" },
+  { name: "Web Development", img: "/subjects/web-development.webp" },
+  { name: "Programming Fundamentals", img: "/subjects/programming-fundamental.webp" },
+  { name: "Data Analysis Basics", img: "/subjects/data-analysis-basic.webp" },
+  { name: "English (Language & Literature)", img: "/subjects/english.webp" },
+  { name: "Economics", img: "/subjects/economics.webp" },
+  { name: "Psychology", img: "/subjects/psychology.webp" },
+  { name: "Environmental Science", img: "/subjects/environmental-science.webp" }
 ];
+
 
 // Shuffle
 function shuffleArray(array) {

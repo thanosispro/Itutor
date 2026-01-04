@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export default function Contact() {
   const socialLinks = [
-    { Icon: Facebook, label: "Facebook", href: "https://facebook.com/yourpage" },
+    { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=61585764614541" },
     { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/yourcompany" },
-    { Icon: Instagram, label: "Instagram", href: "https://instagram.com/yourhandle" },
+    { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/innovativelearn?igsh=Y3FsOHplMWxha2Vj" },
   ];
 
   const benefits = [
