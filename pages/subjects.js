@@ -142,14 +142,16 @@ export default function SubjectsPage() {
 
         {/* SUBJECT CARDS */}
         {filteredSubjects.length ? (
-  <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+  <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
     {filteredSubjects.map((subj) => (
       <div
         key={subj.name}
-        className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+        className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full"
       >
-        <div className="p-8 text-center">
-          <div className="relative mx-auto w-32 h-32 mb-6">
+        {/* Card Content Wrapper */}
+        <div className="p-8 text-center flex flex-col flex-grow">
+          {/* Image Section */}
+          <div className="relative mx-auto w-32 h-32 mb-6 flex-shrink-0">
             <img
               src={subj.img}
               alt={subj.name}
@@ -157,13 +159,19 @@ export default function SubjectsPage() {
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-          <h3 className="text-2xl font-bold text-[#1D3E89] mb-6 flex items-center justify-center gap-2">
-            <BookOpen className="w-6 h-6 text-[#1D3E89]" />
-            {subj.name}
-          </h3>
+
+          {/* Title Section - flex-grow ensures this area takes up available space */}
+          <div className="flex-grow flex flex-col justify-center mb-6">
+            <h3 className="text-2xl font-bold text-[#1D3E89] flex items-center justify-center gap-2">
+              <BookOpen className="w-6 h-6 flex-shrink-0" />
+              <span className="leading-tight">{subj.name}</span>
+            </h3>
+          </div>
+
+          {/* Action Button - mt-auto pushes it to the bottom of the card */}
           <button
             onClick={() => handleBookClass(subj)}
-            className="w-full py-4 bg-gradient-to-r from-[#1D3E89] to-[#3A5FAD] text-white font-semibold rounded-2xl shadow-md hover:shadow-xl hover:opacity-90 transform hover:scale-105 transition-all duration-300"
+            className="mt-auto w-full py-4 bg-gradient-to-r from-[#1D3E89] to-[#3A5FAD] text-white font-semibold rounded-2xl shadow-md hover:shadow-xl hover:opacity-90 transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
           >
             Book Class
           </button>
@@ -172,10 +180,7 @@ export default function SubjectsPage() {
     ))}
   </div>
 ) : (
-  <div className="mt-20 p-8 text-center bg-white/50 rounded-2xl shadow-md">
-    <h3 className="text-2xl font-semibold text-[#1D3E89]">No Results Found</h3>
-    <p className="mt-2 text-gray-600">Try adjusting your search or filters to find what you're looking for.</p>
-  </div>
+''
 )}
 
         {/* MODAL */}

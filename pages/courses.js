@@ -164,58 +164,68 @@ export default function CoursesPage() {
         </div>
 
         {/* Courses Grid */}
-        <div className="mt-20">
-          {filteredCourses.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-              {filteredCourses.map((course) => (
-                <div
-                  key={course.name}
-                  className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-4"
-                >
-                  {/* Image Container */}
-                  <div className="relative aspect-square overflow-hidden">
-                    <img
-                      src={course.img}
-                      alt={course.name}
-                      className="w-full h-full sm:h-60 sm:w-96 object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-6 left-6 right-6 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                      <p className="text-white text-lg font-semibold">Start Learning Today</p>
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-8 text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-                      <Code2 className="w-7 h-7 text-indigo-600" />
-                      {course.name}
-                    </h3>
-
-                    <button
-                      onClick={handleBookClass}
-                      className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:from-indigo-700 hover:to-purple-800 transform hover:scale-105 transition-all duration-300"
-                    >
-                      Enroll Now
-                    </button>
-                  </div>
-                </div>
-              ))}
+        <div className="mt-10">
+  {filteredCourses.length > 0 ? (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+      {filteredCourses.map((course) => (
+        <div
+          key={course.name}
+          className="group flex flex-col bg-white rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 h-full border border-gray-100"
+        >
+          {/* Image Container - Fixed Aspect Ratio */}
+          <div className="relative w-full aspect-square overflow-hidden flex-shrink-0">
+            <img
+              src={course.img}
+              alt={course.name}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300">
+              <p className="text-white text-sm sm:text-base font-semibold">
+                Start Learning Today
+              </p>
             </div>
-          ) : (
-            <div className="text-center py-20 bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl">
-              <div className="max-w-md mx-auto">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center">
-                  <Search className="w-12 h-12 text-gray-400" />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-800 mb-4">No Courses Found</h3>
-                <p className="text-lg text-gray-600">
-                  Try adjusting your search term or filters to explore our full catalog.
-                </p>
-              </div>
+          </div>
+
+          {/* Card Content - flex-grow makes this section expand to fill space */}
+          <div className="p-5 sm:p-6 text-center flex flex-col flex-grow">
+            {/* Title Section - Nested flex-grow keeps title centered even if it wraps */}
+            <div className="flex-grow flex items-center justify-center mb-5">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center justify-center gap-2 leading-tight">
+                <Code2 className="w-5 h-5 text-indigo-600 flex-shrink-0" />
+                {course.name}
+              </h3>
             </div>
-          )}
+
+            {/* Action Button - mt-auto ensures it sits at the very bottom */}
+            <button
+              onClick={handleBookClass}
+              className="mt-auto w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg hover:brightness-110 active:scale-95 transition-all duration-200"
+            >
+              Enroll Now
+            </button>
+          </div>
         </div>
+      ))}
+    </div>
+  ) : (
+    /* Empty State */
+    <div className="text-center py-14 bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-dashed border-gray-200 shadow-sm">
+      <div className="max-w-sm mx-auto px-6">
+        <div className="w-20 h-20 mx-auto mb-6 bg-indigo-50 rounded-full flex items-center justify-center">
+          <Search className="w-10 h-10 text-indigo-300" />
+        </div>
+        <h3 className="text-2xl font-extrabold text-gray-800 mb-2">No Courses Found</h3>
+        <p className="text-gray-500 text-base">
+          Try adjusting your search term or filters to find what you're looking for.
+        </p>
+      </div>
+    </div>
+  )}
+</div>
+
 
         {/* Modals */}
         {isChoiceModalOpen && (

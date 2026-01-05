@@ -39,7 +39,7 @@ const tutorsData = [
 
 export default function TutorsPage() {
   return (
-    <div className="min-h-screen bg-white pt-40 px-6 md:px-12">
+    <div className="min-h-screen bg-white pt-40 py-20 px-6 md:px-12">
       {/* Title Section */}
       <div className="text-center mb-20">
         <h1 className="text-6xl md:text-7xl font-extrabold text-blue-950 relative inline-block">

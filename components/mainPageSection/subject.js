@@ -6,9 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const subjects = [
-  { id: '1', name: 'Mathematics', description: 'Master calculus and algebra.', imageUrl: '/subjects/math.webp' },
-  { id: '2', name: 'Physics', description: 'Explore mechanics and electromagnetism.', imageUrl: '/subjects/game.webp' },
-  { id: '3', name: 'Chemistry', description: 'Understand reactions and bonding.', imageUrl: '/subjects/science.webp' },
+  { id: '1', name: 'Wev Development', description: 'Master calculus and algebra.', imageUrl: '/subjects/web-development.webp' },
+  { id: '2', name: 'Hacking Course', description: 'Explore mechanics and electromagnetism.', imageUrl: '/courses/cyber-security.webp' },
+  { id: '3', name: 'Data Science', description: 'Understand reactions and bonding.', imageUrl: '/courses/data-science.webp' },
 ];
 
 const SLIDE_DURATION = 0.6;

@@ -96,41 +96,47 @@ const Navbar = () => {
 
           {/* DROPDOWN */}
           {isMenuOpen && (
-            <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-lg border">
-              
+  <div className="absolute top-full right-0 mt-3 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden">
+    <div className="py-6 px-5 flex flex-col items-center">
+      
+      {/* Header Section with Blue Line */}
+      <div className="flex items-center w-full  gap-3">
+        <div className="h-1 flex-grow bg-[#1D3E89] rounded-full"></div>
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="flex-shrink-0 text-white rounded-full bg-[#1D3E89] hover:bg-[#1D3E89]/90 p-1.5 transition-transform active:scale-90"
+        >
+          <X size={18} strokeWidth={2.5} />
+        </button>
+      </div>
 
-              <div className="py-6 px-6 space-y-3">
-                
-                <div className='flex flex-row justify-center items-center'> 
-                <div className='h-1 w-full bg-[#1D3E89]'></div>
-                <button
-                onClick={() => setIsMenuOpen(false)}
-                className=" text-white rounded-full bg-[#1D3E89] hover:bg-[#1D3E89]/90"
-              >
-                <X className='h-8 w-8 p-1' size={18} />
-              </button>
-                </div>
-                <button className="lg:hidden w-4/5 py-3 rounded-xl font-semibold text-white bg-[#1D3E89] shadow hover:bg-[#1D3E89]/90">
-                  <Link href="/subjects">Find Tutors</Link>
-                </button>
-                
+      {/* Primary Action Button */}
+      <Link href="/subjects" className="w-full">
+        <button className="lg:hidden w-full py-3.5 rounded-xl font-bold text-white bg-[#1D3E89] shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
+          Find Tutors
+        </button>
+      </Link>
 
-                <nav className="space-y-2 w-4/5 pt-4">
-                  {menuItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block py-3 px-2 rounded-lg hover:bg-gray-100 text-gray-800 font-medium"
-                    >
-                      {item.label}
-                      <item.icon size={20} className="inline-block ml-2 text-sky-500" />
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            </div>
-          )}
+      {/* Navigation Links */}
+      <nav className="w-full mt-4 space-y-1">
+        {menuItems.map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            onClick={() => setIsMenuOpen(false)}
+            className="flex items-center justify-between w-full py-3.5 px-4 rounded-xl text-gray-700 font-semibold hover:bg-gray-200 hover:text-[#1D3E89] transition-colors group"
+          >
+            <span className="text-base">{item.label}</span>
+            <item.icon 
+              size={20} 
+              className="text-sky-500 group-hover:scale-110 transition-transform" 
+            />
+          </Link>
+        ))}
+      </nav>
+    </div>
+  </div>
+)}
         </div>
       </div>
     </header>
