@@ -161,12 +161,17 @@ export default function SubjectsPage() {
           </div>
 
           {/* Title Section - flex-grow ensures this area takes up available space */}
-          <div className="flex-grow flex flex-col justify-center mb-6">
-            <h3 className="text-2xl font-bold text-[#1D3E89] flex items-center justify-center gap-2">
-              <BookOpen className="w-6 h-6 flex-shrink-0" />
-              <span className="leading-tight">{subj.name}</span>
-            </h3>
-          </div>
+         <div className="flex-grow flex flex-row items-start justify-start mb-6 w-full px-2">
+  {/* The Fix: added shrink-0 and mt-1 for baseline alignment */}
+  <BookOpen className="w-6 h-6 text-pink-500 shrink-0 mt-1" />
+  
+  <h3 className="text-2xl font-bold text-[#1D3E89] flex-grow text-center">
+    <span className="leading-tight block px-2">{subj.name}</span>
+  </h3>
+  
+  {/* Invisible placeholder to keep text perfectly centered if desired */}
+  <div className="w-6 shrink-0" aria-hidden="true"></div>
+</div>
 
           {/* Action Button - mt-auto pushes it to the bottom of the card */}
           <button

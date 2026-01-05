@@ -100,7 +100,7 @@ const Navbar = () => {
     <div className="py-6 px-5 flex flex-col items-center">
       
       {/* Header Section with Blue Line */}
-      <div className="flex items-center w-full  gap-3">
+      <div className="flex items-center w-full mb-2">
         <div className="h-1 flex-grow bg-[#1D3E89] rounded-full"></div>
         <button
           onClick={() => setIsMenuOpen(false)}
