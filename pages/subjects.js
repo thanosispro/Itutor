@@ -8,9 +8,9 @@ const subjectsData = [
   { name: "Physics", img: "/subjects/physics.webp" },
   { name: "Computer Science", img: "/subjects/computer-science.webp" },
   { name: "Web Development", img: "/subjects/web-development.webp" },
-  { name: "Programming Fundamentals", img: "/subjects/programming-fundamental.webp" },
-  { name: "Data Analysis Basics", img: "/subjects/data-analysis-basic.webp" },
-  { name: "English (Language & Literature)", img: "/subjects/english.webp" },
+  { name: "Programming ", img: "/subjects/programming-fundamental.webp" },
+  { name: "Data Analysis ", img: "/subjects/data-analysis-basic.webp" },
+  { name: "English ", img: "/subjects/english.webp" },
   { name: "Economics", img: "/subjects/economics.webp" },
   { name: "Psychology", img: "/subjects/psychology.webp" },
   { name: "Environmental Science", img: "/subjects/environmental-science.webp" }
@@ -44,7 +44,7 @@ export default function SubjectsPage() {
 
   // Fixed Dropdown Component
   const Dropdown = ({ label, value, options, onChange, id }) => (
-    <div className="relative w-full md:w-auto">
+    <div className="relative w-full md:w-auto ">
       <button
         type="button"
         onClick={() => setOpenDropdown(openDropdown === id ? null : id)}
@@ -77,7 +77,7 @@ export default function SubjectsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br pb-10 from-indigo-50 via-white to-teal-50 pt-36 px-6 md:px-12">
+    <div className="min-h-screen bg-gradient-to-br pb-10 mt-10 from-indigo-50 via-white to-teal-50 pt-36 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl md:text-6xl font-extrabold text-center text-indigo-950 mb-4">
           Explore Subjects
