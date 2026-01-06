@@ -6,7 +6,7 @@ import React from 'react';
 
 export function Section1() {
   return (
-    <div className="relative w-full h-auto py-20 bg-tras overflow-x-hidden pt-8 sm:pt-10">
+    <div className="relative w-full h-auto  bg-tras overflow-x-hidden pt-8 sm:pt-10">
       {/* Hero Content */}
       <div className="relative px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-20 z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">

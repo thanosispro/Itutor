@@ -149,7 +149,7 @@ export default function SubjectsPage() {
         className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full"
       >
         {/* Card Content Wrapper */}
-        <div className="p-8 text-center flex flex-col flex-grow">
+        <div className="p-4 text-center flex flex-col flex-grow">
           {/* Image Section */}
           <div className="relative mx-auto w-32 h-32 mb-6 flex-shrink-0">
             <img
@@ -161,12 +161,12 @@ export default function SubjectsPage() {
           </div>
 
           {/* Title Section - flex-grow ensures this area takes up available space */}
-         <div className="flex-grow flex flex-row items-start justify-start mb-6 w-full px-2">
+         <div className=" flex flex-row items-center justify-start mb-6 gap-2 w-full px-2">
   {/* The Fix: added shrink-0 and mt-1 for baseline alignment */}
   <BookOpen className="w-6 h-6 text-pink-500 shrink-0 mt-1" />
   
-  <h3 className="text-2xl font-bold text-[#1D3E89] flex-grow text-center">
-    <span className="leading-tight block px-2">{subj.name}</span>
+  <h3 className="text-md font-bold text-[#1D3E89]">
+    <span className="leading-tight block px-2 text-start">{subj.name}</span>
   </h3>
   
   {/* Invisible placeholder to keep text perfectly centered if desired */}

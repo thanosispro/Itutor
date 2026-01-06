@@ -52,37 +52,42 @@ const SubjectCarousel = () => {
 
   return (
     <div className="relative w-full max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-      <div className="relative min-h-[420px] md:h-[500px]">
-        <motion.div
-          className="flex h-full"
-          animate={{ x: `-${currentIndex * 100}%` }}
-          transition={isAnimating ? { duration: SLIDE_DURATION, ease: 'easeInOut' } : { duration: 0 }}
-          onAnimationComplete={handleAnimationComplete}
-        >
-          {extendedSubjects.map((subject, index) => (
-            <div key={`${subject.id}-${index}`} className="min-w-full h-full flex flex-col md:flex-row items-center justify-center px-4 py-6 md:px-8 md:py-12 gap-6 md:gap-10">
-              <div className="w-full max-w-[280px] md:max-w-[500px]">
-                <Image src={subject.imageUrl} alt={subject.name} width={500} height={400} className="rounded-xl object-cover shadow-lg w-full h-auto" priority={index === 1} />
-              </div>
-              <div className="text-center md:text-left max-w-md">
-                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{subject.name}</h2>
-                <p className="text-sm md:text-lg text-gray-600 mb-6">{subject.description}</p>
-                
-                <Link href={'/courses'} className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl text-sm md:text-base">
-                  Book Now
-                </Link>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+  {/* Adjusted min-h and h to reduce the overall container height if desired */}
+  <div className="relative min-h-[400px] md:h-[450px]"> 
+    <motion.div
+      className="flex h-full"
+      animate={{ x: `-${currentIndex * 100}%` }}
+      transition={isAnimating ? { duration: SLIDE_DURATION, ease: 'easeInOut' } : { duration: 0 }}
+      onAnimationComplete={handleAnimationComplete}
+    >
+      {extendedSubjects.map((subject, index) => (
+        /* CHANGE: Reduced py-6 to py-4 (mobile) and md:py-12 to md:py-8 (desktop)
+           to shrink the gap at the top and bottom.
+        */
+        <div key={`${subject.id}-${index}`} className="min-w-full h-full flex flex-col md:flex-row items-center justify-center px-4 py-4 md:px-8 md:py-8 gap-6 md:gap-10">
+          <div className="w-full max-w-[280px] md:max-w-[500px]">
+            <Image src={subject.imageUrl} alt={subject.name} width={500} height={400} className="rounded-xl object-cover shadow-lg w-full h-auto" priority={index === 1} />
+          </div>
+          <div className="text-center md:text-left max-w-md">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{subject.name}</h2>
+            <p className="text-sm md:text-lg text-gray-600 mb-6">{subject.description}</p>
+            
+            <Link href={'/courses'} className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl text-sm md:text-base">
+              Book Now
+            </Link>
+          </div>
+        </div>
+      ))}
+    </motion.div>
+  </div>
 
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-        {subjects.map((_, idx) => (
-          <div key={idx} className={`h-2 rounded-full transition-all ${idx === (currentIndex - 1) % subjects.length ? 'bg-blue-600 w-6' : 'bg-gray-300 w-2'}`} />
-        ))}
-      </div>
-    </div>
+  {/* CHANGE: Adjusted bottom-3 to bottom-6 to lift dots slightly further from the edge if padding was reduced */}
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+    {subjects.map((_, idx) => (
+      <div key={idx} className={`h-2 rounded-full transition-all ${idx === (currentIndex - 1) % subjects.length ? 'bg-blue-600 w-6' : 'bg-gray-300 w-2'}`} />
+    ))}
+  </div>
+</div>
   );
 };
 

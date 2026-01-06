@@ -79,7 +79,7 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-gray-600 uppercase tracking-wider">Phone</p>
                   <p className="text-lg sm:text-xl font-medium text-gray-900 mt-1">
-                    +977-9803178238
+                   +977-9705459146
                   </p>
                 </div>
               </a>
