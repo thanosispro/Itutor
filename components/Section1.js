@@ -48,7 +48,7 @@ export function Section1() {
           <div className="relative h-64 sm:h-96 md:h-[520px] w-full">
             <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/teacher.png"
+                src="/tutor.webp"
                 alt="Classroom"
                 className="w-full h-full object-cover"
               />
