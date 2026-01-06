@@ -66,8 +66,8 @@ const Footer = () => {
               {[
                 { Icon: Facebook, link: "https://www.facebook.com/profile.php?id=61585764614541" },
                 { Icon: Instagram, link: "https://www.instagram.com/innovativelearn" },
-                { Icon: Twitter, link: "#" },
-                { Icon: Linkedin, link: "#" },
+                // { Icon: Twitter, link: "#" },
+                { Icon: Linkedin, link: "https://www.linkedin.com/company/110929226/admin/dashboard" },
               ].map((social, i) => (
                 <a 
                   key={i}
