@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-indigo-50 py-12 relative">
+    <footer className="bg-indigo-50 pt-16 pb-8 relative overflow-hidden">
       {/* Wave background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <svg viewBox="0 0 1440 320" className="w-full absolute bottom-0">
+        <svg viewBox="0 0 1440 320" className="w-full absolute bottom-0 transform scale-110">
           <path
             fill="#6366f1"
             fillOpacity="0.1"
@@ -16,45 +16,82 @@ const Footer = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-700">
-        <div className="flex flex-col items-center md:items-start">
-          <img src="/logo.png" alt="Logo" className="h-24 mb-4 object-contain" />
-          <p className="font-medium text-indigo-800 text-center md:text-left">Learning Without Limits</p>
-        </div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 text-gray-700">
+          
+          {/* Brand Section */}
+          <div className="flex flex-col items-center md:items-start space-y-4">
+            <img src="/logo.png" alt="Logo" className="h-20 w-auto object-contain" />
+            <p className="font-semibold text-indigo-900 tracking-tight text-center md:text-left">
+              Learning Without Limits
+            </p>
+            <p className="text-sm text-gray-500 max-w-xs text-center md:text-left leading-relaxed">
+              Empowering students globally with expert-led courses and personalized tutoring.
+            </p>
+          </div>
 
-        <div className="text-center md:text-left">
-          <h3 className="font-semibold text-lg mb-2 text-indigo-900">Quick Links</h3>
-          <ul className="space-y-1">
-            <li><a href="#" className="hover:text-indigo-600 transition">Find a Tutor</a></li>
-            <li><a href="#" className="hover:text-indigo-600 transition">Become a Tutor</a></li>
-            <li><a href="#" className="hover:text-indigo-600 transition">Courses</a></li>
-            <li><a href="#" className="hover:text-indigo-600 transition">Blog</a></li>
-          </ul>
-        </div>
+          {/* Quick Links */}
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-lg mb-6 text-indigo-950">Quick Links</h3>
+            <ul className="space-y-3">
+              <li><Link href='/tutors' className="hover:text-indigo-600 transition-colors duration-200">Find a Tutor</Link></li>
+              <li><Link href='/courses' className="hover:text-indigo-600 transition-colors duration-200">Courses</Link></li>
+              <li><Link href='/subjects' className="hover:text-indigo-600 transition-colors duration-200">Subjects</Link></li>
+            </ul>
+          </div>
 
-        <div className="text-center md:text-left">
-          <h3 className="font-semibold text-lg mb-2 text-indigo-900">Contact Us</h3>
-          <p className="flex items-center justify-center md:justify-start gap-2"><Mail className="w-5 h-5 text-indigo-600"/> innovativelearn.uk@gmail.com</p>
-          <p className="flex items-center justify-center md:justify-start gap-2"><Phone className="w-5 h-5 text-indigo-600"/> +977-9705459146</p>
-        </div>
+          {/* Contact Section */}
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-lg mb-6 text-indigo-950">Get in Touch</h3>
+            <div className="space-y-4">
+              <a href="mailto:innovativelearn.uk@gmail.com" className="flex items-center justify-center md:justify-start gap-3 group">
+                <div className="p-2 bg-white rounded-lg shadow-sm group-hover:bg-indigo-600 transition-colors duration-300">
+                  <Mail className="w-4 h-4 text-indigo-600 group-hover:text-white"/>
+                </div>
+                <span className="text-sm break-all">innovativelearn.uk@gmail.com</span>
+              </a>
+              <a href="tel:+9779705459146" className="flex items-center justify-center md:justify-start gap-3 group">
+                <div className="p-2 bg-white rounded-lg shadow-sm group-hover:bg-indigo-600 transition-colors duration-300">
+                  <Phone className="w-4 h-4 text-indigo-600 group-hover:text-white"/>
+                </div>
+                <span className="text-sm">+977-9705459146</span>
+              </a>
+            </div>
+          </div>
 
-        <div className="text-center md:text-left">
-          <h3 className="font-semibold text-lg mb-2 text-indigo-900">Follow Us</h3>
-          <div className="flex justify-center md:justify-start gap-4">
-            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/profile.php?id=61585764614541"><Facebook className="w-6 h-6 text-indigo-600 hover:text-indigo-800"/></a>
-            <a target="_blank" rel="noopener noreferrer" href="#"><Twitter className="w-6 h-6 text-indigo-600 hover:text-indigo-800"/></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/innovativelearn?igsh=Y3FsOHplMWxha2Vj"><Instagram className="w-6 h-6 text-indigo-600 hover:text-indigo-800"/></a>
-            <a target="_blank" rel="noopener noreferrer" href="#"><Linkedin className="w-6 h-6 text-indigo-600 hover:text-indigo-800"/></a>
+          {/* Social Section */}
+          <div className="text-center md:text-left">
+            <h3 className="font-bold text-lg mb-6 text-indigo-950">Follow Us</h3>
+            <div className="flex justify-center md:justify-start gap-3">
+              {[
+                { Icon: Facebook, link: "https://www.facebook.com/profile.php?id=61585764614541" },
+                { Icon: Instagram, link: "https://www.instagram.com/innovativelearn" },
+                { Icon: Twitter, link: "#" },
+                { Icon: Linkedin, link: "#" },
+              ].map((social, i) => (
+                <a 
+                  key={i}
+                  href={social.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white rounded-xl shadow-sm text-indigo-600 hover:bg-indigo-600 hover:text-white hover:-translate-y-1 transition-all duration-300"
+                >
+                  <social.Icon className="w-5 h-5"/>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className=" flex-col justify-center border-t gap-20 border-indigo-200 mt-8 pt-4 text-sm text-gray-600 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-        
-        <div className="flex items-center justify-center  gap-20 py-3 md:mt-0">
-          <Link href="/policy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
-          <p>© 2025 Innovative Learn. All rights reserved.</p>
-          
+        {/* Bottom Bar */}
+        <div className="mt-16 pt-8 border-t border-indigo-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 font-medium">
+            <p>© {new Date().getFullYear()} Innovative Learn. All rights reserved.</p>
+            <div className="flex items-center gap-8">
+              <Link href="/policy" className="hover:text-indigo-600 transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-indigo-600 transition-colors">Terms of Service</Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

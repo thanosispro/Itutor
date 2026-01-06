@@ -146,37 +146,29 @@ export default function SubjectsPage() {
     {filteredSubjects.map((subj) => (
       <div
         key={subj.name}
-        className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 flex flex-col h-full"
+        className="group bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full overflow-hidden"
       >
-        {/* Card Content Wrapper */}
-        <div className="p-4 text-center flex flex-col flex-grow">
-          {/* Image Section */}
-          <div className="relative mx-auto w-32 h-32 mb-6 flex-shrink-0">
+        {/* Card Content */}
+        <div className="p-6 flex flex-col flex-grow text-center">
+          
+          {/* Image */}
+          <div className="mx-auto w-32 h-32 mb-6">
             <img
               src={subj.img}
               alt={subj.name}
-              className="w-full h-full rounded-full object-cover ring-8 ring-[#1D3E89]/10 group-hover:ring-[#1D3E89]/20 transition-all duration-300"
+              className="w-full h-full rounded-full object-cover ring-4 ring-[#1D3E89]/10 group-hover:ring-[#1D3E89]/30 transition-all duration-300"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
 
-          {/* Title Section - flex-grow ensures this area takes up available space */}
-         <div className=" flex flex-row items-center justify-start mb-6 gap-2 w-full px-2">
-  {/* The Fix: added shrink-0 and mt-1 for baseline alignment */}
-  <BookOpen className="w-6 h-6 text-pink-500 shrink-0 mt-1" />
-  
-  <h3 className="text-md font-bold text-[#1D3E89]">
-    <span className="leading-tight block px-2 text-start">{subj.name}</span>
-  </h3>
-  
-  {/* Invisible placeholder to keep text perfectly centered if desired */}
-  <div className="w-6 shrink-0" aria-hidden="true"></div>
-</div>
+          {/* Title */}
+          <h3 className="text-lg font-semibold text-[#1D3E89] leading-snug mb-6 line-clamp-2">
+            {subj.name}
+          </h3>
 
-          {/* Action Button - mt-auto pushes it to the bottom of the card */}
+          {/* Button */}
           <button
             onClick={() => handleBookClass(subj)}
-            className="mt-auto w-full py-4 bg-gradient-to-r from-[#1D3E89] to-[#3A5FAD] text-white font-semibold rounded-2xl shadow-md hover:shadow-xl hover:opacity-90 transform hover:scale-[1.02] active:scale-95 transition-all duration-300"
+            className="mt-auto w-full py-3 rounded-2xl bg-gradient-to-r from-[#1D3E89] to-[#3A5FAD] text-white font-medium shadow-sm hover:shadow-lg hover:opacity-95 transition-all duration-300"
           >
             Book Class
           </button>
@@ -184,9 +176,8 @@ export default function SubjectsPage() {
       </div>
     ))}
   </div>
-) : (
-''
-)}
+) : null}
+
 
         {/* MODAL */}
         {isModalOpen && (
